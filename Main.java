@@ -6,12 +6,7 @@
  */
 
 import java.util.*;
-class Main{
-	// Initialize Scanner object
-	Scanner s = new Scanner(System.in);
-
-	// Instance variables
-	User u;
+public class Main{
 
 	/**
 	 * The main method
@@ -20,11 +15,18 @@ class Main{
 	 */
 	public static void main(String[] args){
 		System.out.println("Welcome to the What To Do program.");
+		Scanner s = new Scanner(System.in);
+		User u;
+		Decide d = new Decide();
 		boolean run = true;
 		while(run){
 			System.out.println("");
 			System.out.println("What's your name?");
 			u = new User(s.nextLine());
+			if(u.getName().toLowerCase().equals("quit")){
+				run = false;
+				continue;
+			}
 			u.importOptions();
 			u.printOptions();
 			boolean next = true;
@@ -36,13 +38,13 @@ class Main{
 				System.out.println("Say \"choose\" to get an option");
 				System.out.println("Say \"add\" to add a new option");
 				System.out.println("Say \"remove\" to remove an option");
-				System.out.println("Say \"print\" to print + " + u.name "\'s options");
+				System.out.println("Say \"print\" to print " + u.getName() + "\'s options");
 				System.out.println("Say \"quit\" to quit the program");
 				System.out.println("");
 				ans = s.nextLine().toLowerCase();
 				if(ans.equals("choose")){
 					System.out.println("");
-					System.out.println("You should: " + Decide.chooseRandom(u) + "!");
+					System.out.println("You should: " + d.chooseRandom(u) + "!");
 					System.out.println("");
 				}
 				else if(ans.equals("add")){
@@ -50,7 +52,7 @@ class Main{
 				}
 				else if(ans.equals("remove")){
 					System.out.println("");
-					System.out.println("What would you like to remove " + u.name + "?");
+					System.out.println("What would you like to remove " + u.getName() + "?");
 					u.removeOption(s.nextLine());
 				}
 				else if(ans.equals("print")){
