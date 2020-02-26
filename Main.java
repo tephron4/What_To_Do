@@ -21,14 +21,10 @@ class Main{
 	public static void main(String[] args){
 		System.out.println("Welcome to the What To Do program.");
 		boolean run = true;
-		boolean getUser = true;
 		while(run){
-			while(getUser){
-				System.out.println("");
-				System.out.println("What's your name?");
-				u = new User(s.nextLine());
-				getUser = false;
-			}
+			System.out.println("");
+			System.out.println("What's your name?");
+			u = new User(s.nextLine());
 			u.importOptions();
 			u.printOptions();
 			boolean next = true;
@@ -40,14 +36,47 @@ class Main{
 				System.out.println("Say \"choose\" to get an option");
 				System.out.println("Say \"add\" to add a new option");
 				System.out.println("Say \"remove\" to remove an option");
-				System.out.println("Say \"print\" to print + " + u.name() "\'s options");
+				System.out.println("Say \"print\" to print + " + u.name "\'s options");
 				System.out.println("Say \"quit\" to quit the program");
 				System.out.println("");
-				if(s.nextLine().toLowerCase().equals("choose")){
-
+				ans = s.nextLine().toLowerCase();
+				if(ans.equals("choose")){
+					System.out.println("");
+					System.out.println("You should: " + Decide.chooseRandom(u) + "!");
+					System.out.println("");
 				}
-				else if()
+				else if(ans.equals("add")){
+					u.importOptions();
+				}
+				else if(ans.equals("remove")){
+					System.out.println("");
+					System.out.println("What would you like to remove " + u.name + "?");
+					u.removeOption(s.nextLine());
+				}
+				else if(ans.equals("print")){
+					u.printOptions();
+				}
+				else if(ans.equals("quit")){
+					next = false;
+				}
+			}
+			boolean ask = true;
+			while(ask){
+				System.out.println("");
+				System.out.println("Would you like to create a new user? (y or n)");
+				String a = s.nextLine();
+				if(a.charAt(0) == 'y'){
+					ask = false;
+					continue;
+				}
+				else if(a.charAt(0) == 'n'){
+					ask = false;
+					run = false;
+				}
 			}
 		}
+		System.out.println("");
+		System.out.println("Thanks for using the What To Do program!");
+		System.out.println("Have a good day!");
 	}
 }
