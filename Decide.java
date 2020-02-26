@@ -7,7 +7,7 @@
 
 import java.util.*;
 class Decide{
-
+	Random r = new Random();
 
 	/**
 	 * A method from randomly selecting an option for the given User
@@ -16,7 +16,7 @@ class Decide{
 	 * @return a string of the name of the chosen option
 	 */
 	public String chooseRandom(User u){
-		int ran = Random.nextInt(u.options.size());
+		int ran = r.nextInt(u.options.size());
 		return u.options.get(ran);
 	}
 }
