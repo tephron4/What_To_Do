@@ -95,12 +95,14 @@ public class User{
 									System.out.println("Added \"" + ln + "\"");
 								}
 							}
+							file = false;
 						}
 						catch(IOException e){
 							System.out.println("");
 							System.err.println(e);
 							continue;
 						}
+
 					}
 					else{
 						System.out.println("");
